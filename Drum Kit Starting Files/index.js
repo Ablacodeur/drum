@@ -7,6 +7,7 @@ for( i = 0 ; i < NumberOfDrumButtom ; i++){
         
        var buttonInnerHtml = this.innerHTML
        makeSound(buttonInnerHtml); 
+       buttonAnimation(buttonInnerHtml);
         
 
     });//making eventlistened to the button
@@ -16,6 +17,7 @@ for( i = 0 ; i < NumberOfDrumButtom ; i++){
 // play sound when a key was pressed on a keyboard
 document.addEventListener("keypress",function(event) {
      makeSound(event.key);
+     buttonAnimation(event.key);
 }); 
    
 // play sound when a key was pressed on a keyboard
@@ -58,6 +60,17 @@ function makeSound(key) {
     
         default: console.log(buttonInnerHtml);
     }
+
+}
+
+function buttonAnimation(currentKey){
+    var activeButton = document.querySelector("." + currentKey);
+    activeButton.classList.add("pressed");//apply the css pressed code to the function to the all classlist starting with "."
+
+    setTimeout(
+        function(){activeButton.classList.remove("pressed");}, 
+        100
+    );//for animation duration
 
 }
  
